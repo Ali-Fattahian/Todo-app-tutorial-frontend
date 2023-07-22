@@ -1,0 +1,30 @@
+#home-page {
+    height: 100%;
+    width: 100%;
+}
+
+.home-page__form {
+    width: 100%;
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.home-page__form input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px dotted #ddd;
+    width: 50%;
+    max-width: 320px;
+    outline: none;
+    padding: .5px;
+    color: #730071;
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+@media screen and (max-width: 360px) {
+    .home-page__form input {
+        width: 70%;
+    }
+}

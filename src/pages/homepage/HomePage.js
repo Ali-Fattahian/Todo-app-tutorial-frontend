@@ -1,7 +1,13 @@
+import classes from './HomePage.module.css';
+
 const HomePage = () => {
   return (
-    <div>HomePage Loaded!</div>
+    <section id={classes['home-page']}>
+      <form method='POST' className={classes['home-page__form']}>
+        <input type='text' />
+      </form>
+    </section>
   )
 }
 
-export default HomePage
+export default HomePage 

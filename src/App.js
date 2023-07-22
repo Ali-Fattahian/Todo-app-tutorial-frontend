@@ -9,11 +9,6 @@ function App() {
       <div id="stars"></div>
       <div id="stars2"></div>
       <div id="stars3"></div>
-      <div id="title">
-        <span>Todo app</span>
-        <br></br>
-        <span>Tutorial</span>
-      </div>
       <Router>
         <Suspense fallback={<Loader />}>
           <Routes>
