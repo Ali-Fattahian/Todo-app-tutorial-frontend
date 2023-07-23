@@ -1,3 +1,4 @@
+import TodoList from '../../components/todos/TodoList';
 import classes from './HomePage.module.css';
 
 const HomePage = () => {
@@ -7,6 +8,7 @@ const HomePage = () => {
         <input type='text' />
         <button type="submit">Create</button>
       </form>
+      <TodoList />
     </section>
   )
 }
