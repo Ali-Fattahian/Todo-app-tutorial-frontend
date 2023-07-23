@@ -4,17 +4,22 @@
 }
 
 .home-page__form {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: auto;
     margin-top: 200px;
     display: flex;
     justify-content: center;
+    width: 50%;
+    padding: 1rem 1.5rem;
+    border: 1px solid #fff;
 }
 
 .home-page__form input {
     background-color: transparent;
     border: none;
     border-bottom: 1px dotted #ddd;
-    width: 50%;
     max-width: 320px;
     outline: none;
     padding: .5px;
@@ -23,8 +28,23 @@
     font-size: 1.1rem;
 }
 
+.home-page__form button {
+    background-color: transparent;
+    color: #DCDCDD;
+    border: 1px solid #C5C3C6;
+    padding: 5px;
+    transition: background-color 400ms ease-in-out;
+    cursor: pointer;
+}
+
+.home-page__form button:hover,
+.home-page__form button:active {
+    background-color: #1985A1;
+    border-color: transparent;
+}
+
 @media screen and (max-width: 360px) {
-    .home-page__form input {
+    .home-page__form {
         width: 70%;
     }
 }
