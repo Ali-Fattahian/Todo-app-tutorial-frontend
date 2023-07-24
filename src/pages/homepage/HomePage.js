@@ -2,6 +2,7 @@ import { useState } from 'react';
 import TodoList from '../../components/todos/TodoList';
 import classes from './HomePage.module.css';
 import TodoForm from '../../components/todos/TodoForm';
+import Navbar from '../../components/navbar/Navbar';
 
 const HomePage = () => {
   const todosDefault = [
@@ -28,10 +29,13 @@ const HomePage = () => {
   const [todos, setTodos] = useState(todosDefault)
 
   return (
+    <>
+    <Navbar />
     <section id={classes['home-page']}>
       <TodoForm setTodos={setTodos} />
       <TodoList todos={todos} />
     </section>
+    </>
   )
 }
 
