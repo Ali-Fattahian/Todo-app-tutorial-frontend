@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import TodoList from '../../components/todos/TodoList';
 import classes from './HomePage.module.css';
+import TodoForm from '../../components/todos/TodoForm';
 
 const HomePage = () => {
   const todosDefault = [
@@ -28,10 +29,7 @@ const HomePage = () => {
 
   return (
     <section id={classes['home-page']}>
-      <form method='POST' className={classes['home-page__form']}>
-        <input type='text' />
-        <button type="submit">Create</button>
-      </form>
+      <TodoForm />
       <TodoList todos={todos} />
     </section>
   )
