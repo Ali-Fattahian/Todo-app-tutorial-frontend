@@ -1,21 +1,7 @@
 import Todo from "./Todo";
 import classes from "./Todos.module.css";
 
-const TodoList = () => {
-  const todos = [
-    {
-      id: 1,
-      title: "Learn React Router Dom",
-      dateCreated: "23 / 7 / 2023",
-      isRead: false,
-    },
-    {
-      id: 2,
-      title: "Learn Redis",
-      dateCreated: "12 / 3 / 2023",
-      isRead: true,
-    },
-  ];
+const TodoList = ({ todos }) => {
 
   return (
     <section id={classes["todo-list"]}>
