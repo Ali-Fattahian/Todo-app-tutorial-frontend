@@ -4,8 +4,6 @@ import classes from "./Todos.module.css";
 const Todo = ({ title, dateCreated, isRead }) => {
   const [todoIsRead, setTodoIsRead] = useState(isRead)
 
-  console.log(todoIsRead)
-
   return (
     <div className={classes.todo}>
       <div className={classes["todo-title"]}>{title}</div>
