@@ -18,4 +18,10 @@
 
 .auth-form a {
     color: #fff;
+    transition: color 400ms ease-in-out;
+}
+
+.auth-form a:hover,
+.auth-form a:active {
+    color: #1985a1;
 }

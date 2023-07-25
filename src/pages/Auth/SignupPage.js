@@ -3,7 +3,7 @@ import Navbar from "../../components/navbar/Navbar";
 import classes from './Auth.module.css'
 import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
+const SignupPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
@@ -15,7 +15,7 @@ const LoginPage = () => {
   },[])
 
   const sendAuthData = async (username, password) => {
-    const response = await fetch("http://localhost:8000/api/login", {
+    const response = await fetch("http://localhost:8000/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -67,11 +67,11 @@ const LoginPage = () => {
             id="login-password"
           />
         </div>
-        <button type="submit">Log in</button>
-        <a href="/signup">Create an account</a>
+        <button type="submit">Sign up</button>
+        <a href="/login">I have an account</a>
       </form>
     </>
   );
 };
 
-export default LoginPage;
+export default SignupPage;

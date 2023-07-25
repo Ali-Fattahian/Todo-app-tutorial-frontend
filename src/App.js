@@ -3,6 +3,7 @@ import HomePage from "./pages/homepage/HomePage";
 import { Suspense } from "react";
 import Loader from "./components/loader/Loader";
 import LoginPage from "./pages/Auth/LoginPage";
+import SignupPage from "./pages/Auth/SignupPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
           </Routes>
         </Suspense>
       </Router>
