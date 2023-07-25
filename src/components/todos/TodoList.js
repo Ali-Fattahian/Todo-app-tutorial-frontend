@@ -9,7 +9,7 @@ const TodoList = ({ todos, shortHeight }) => {
         <Todo
           key={todo.id}
           title={todo.title}
-          dateCreated={todo.dateCreated}
+          dateCreated={todo.date_created}
           isRead={todo.isRead}
         />
       ))}

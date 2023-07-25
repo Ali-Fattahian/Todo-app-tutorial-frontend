@@ -8,7 +8,7 @@ const Todo = ({ title, dateCreated, isRead }) => {
     <div className={classes.todo}>
       <div className={classes["todo-title"]}>{title}</div>
       <div className={classes["todo-lower"]}>
-        <small>{dateCreated}</small>
+        <small>{dateCreated.slice(0, 10)}</small>
           <label htmlFor="isRead" className={classes['isRead']}>
           <input type="checkbox" checked={todoIsRead} id="isRead" className={classes['checkbox']} onChange={() => setTodoIsRead(!todoIsRead)} />
           Read

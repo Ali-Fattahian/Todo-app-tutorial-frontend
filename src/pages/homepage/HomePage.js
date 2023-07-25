@@ -7,31 +7,23 @@ import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const navigate = useNavigate()
-  const todosDefault = [
-    {
-      id: 1,
-      title: "Learn React Router Dom",
-      dateCreated: "23/7/2023",
-      isRead: false,
-    },
-    {
-      id: 2,
-      title: "Learn Redis",
-      dateCreated: "12/3/ 2023",
-      isRead: true,
-    },
-    {
-      id: 3,
-      title: "Learn how to improve performance",
-      dateCreated: "13/3/2023",
-      isRead: false,
-    },
-  ];
+  const [todos, setTodos] = useState([])
 
-  const [todos, setTodos] = useState(todosDefault)
+  const fetchTodos = async () => {
+    const response = await fetch('http://localhost:8000/api/todo-list', {
+      headers: {
+        'Authorization': `Token ${localStorage.getItem('token')}` 
+      }
+    })
+
+    const data = await response.json()
+    setTodos(data)
+  }
 
   useEffect(() => {
     if (!localStorage.getItem('token')) navigate('/login')
+
+    fetchTodos()
   }, [])
 
   return (
@@ -39,7 +31,7 @@ const HomePage = () => {
     <Navbar />
     <section id={classes['home-page']}>
       <TodoForm setTodos={setTodos} />
-      <TodoList todos={todos} shortHeight />
+      {todos && <TodoList todos={todos} shortHeight />}
     </section>
     </>
   )
