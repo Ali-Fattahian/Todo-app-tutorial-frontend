@@ -1,7 +1,6 @@
 #todo-list {
   width: 50%;
   max-width: 350px;
-  max-height: 181px;
   margin: auto;
   margin-top: 2rem;
   -webkit-box-shadow: 10px 10px 24px 6px rgba(0, 0, 0, 0.44);
@@ -10,6 +9,10 @@
   padding: 1.2rem 1.5rem;
   overflow: scroll;
   font-family: "Audiowide", cursive;
+}
+
+.todo-list--short-height {
+  max-height: 181px;
 }
 
 .todo {
