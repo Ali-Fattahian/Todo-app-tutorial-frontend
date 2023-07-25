@@ -30,7 +30,7 @@ const HomePage = () => {
     <>
     <Navbar />
     <section id={classes['home-page']}>
-      <TodoForm setTodos={setTodos} />
+      <TodoForm />
       {todos && <TodoList todos={todos} shortHeight />}
     </section>
     </>
