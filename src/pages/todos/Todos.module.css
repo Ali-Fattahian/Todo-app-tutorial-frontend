@@ -1,0 +1,27 @@
+.todo-list-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.todo-list-btns button {
+  background-color: transparent;
+  transition: background-color 400ms ease-in-out;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 5px 18px;
+  font-weight: 200;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.todo-list-btns .todo-btn--active {
+  background-color: #1985a1;
+}
+
+.todo-list-btns button:hover,
+.todo-list-btns button:active {
+  background-color: #1985a1;
+  border-color: transparent;
+}

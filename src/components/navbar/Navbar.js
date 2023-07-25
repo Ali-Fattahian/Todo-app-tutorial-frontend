@@ -17,8 +17,7 @@ const Navbar = () => {
         ) : (
           <a href="/login">Log in</a>
         )}
-        {token && <a href="/finished-todos">Finished</a>}
-        {token && <a href="/unfinished-todos">Unfinished</a>}
+        {token && <a href="/todos">Todos</a>}
       </section>
     </nav>
   );
