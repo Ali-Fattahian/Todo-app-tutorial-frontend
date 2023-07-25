@@ -6,17 +6,19 @@ const Navbar = () => {
     window.location.reload()
   };
 
+  const token = localStorage.getItem('token')
+
   return (
     <nav id={classes["navbar-container"]}>
       <section id={classes["navbar"]}>
-        <a href="/">Home</a>
-        {localStorage.getItem("token") ? (
+        {token && <a href="/">Home</a>}
+        {token ? (
           <p onClick={() => logout()}>Log out</p>
         ) : (
           <a href="/login">Log in</a>
         )}
-        <a href="/finished-todos">Finished</a>
-        <a href="/unfinished-todos">Unfinished</a>
+        {token && <a href="/finished-todos">Finished</a>}
+        {token && <a href="/unfinished-todos">Unfinished</a>}
       </section>
     </nav>
   );

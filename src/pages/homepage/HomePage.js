@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TodoList from '../../components/todos/TodoList';
 import classes from './HomePage.module.css';
 import TodoForm from '../../components/todos/TodoForm';
 import Navbar from '../../components/navbar/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+  const navigate = useNavigate()
   const todosDefault = [
     {
       id: 1,
@@ -27,6 +29,10 @@ const HomePage = () => {
   ];
 
   const [todos, setTodos] = useState(todosDefault)
+
+  useEffect(() => {
+    if (!localStorage.getItem('token')) navigate('/login')
+  }, [])
 
   return (
     <>
