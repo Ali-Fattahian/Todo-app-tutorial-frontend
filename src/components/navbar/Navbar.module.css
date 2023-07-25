@@ -23,7 +23,20 @@
     transition: color ease-in-out 400ms;
 }
 
+#navbar p {
+    color: #fff;
+    transition: color ease-in-out 400ms;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
 #navbar a:hover,
 #navbar a:active {
+    color: #1985a1;
+}
+
+#navbar p:hover,
+#navbar p:active {
     color: #1985a1;
 }
