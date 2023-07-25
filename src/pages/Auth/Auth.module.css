@@ -1,0 +1,21 @@
+.auth-form {
+    gap: 3rem;
+    padding: 2rem;
+}
+
+.auth-form label {
+    color: #fff;
+    margin-right: 18px;
+    font-size: .8rem;
+    transform: translateY(5px);
+    margin-bottom: 5px;
+}
+
+.auth-form input {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.auth-form a {
+    color: #fff;
+}
