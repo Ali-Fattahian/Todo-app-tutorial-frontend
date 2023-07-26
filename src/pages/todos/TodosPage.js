@@ -7,6 +7,7 @@ import classes from "./Todos.module.css";
 const TodosPage = () => {
   const navigate = useNavigate();
   const [todos, setTodos] = useState([]);
+  const [refresh, setRefresh] = useState(null)
 
   const fetchAllTodos = async () => {
     const response = await fetch("http://localhost:8000/api/todo-list", {
@@ -60,7 +61,7 @@ const TodosPage = () => {
     } else if (localStorage.getItem("todoListChoice") === "unfinished") {
       fetchUnfinishedTodos();
     }
-  }, []);
+  }, [refresh]);
 
   return (
     <>
@@ -104,7 +105,7 @@ const TodosPage = () => {
             All
           </button>
         </div>
-        {todos && <TodoList todos={todos} />}
+        {todos && <TodoList todos={todos} setRefresh={setRefresh} />}
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import Todo from "./Todo";
 import classes from "./Todos.module.css";
 
-const TodoList = ({ todos, shortHeight }) => {
+const TodoList = ({ todos, shortHeight, setRefresh }) => {
 
   return (
     <section id={classes["todo-list"]} className={shortHeight && `${classes['todo-list--short-height']}`}>
@@ -12,6 +12,7 @@ const TodoList = ({ todos, shortHeight }) => {
           title={todo.title}
           dateCreated={todo.date_created}
           isRead={todo.is_read}
+          setRefresh={setRefresh}
         />
       ))}
     </section>
