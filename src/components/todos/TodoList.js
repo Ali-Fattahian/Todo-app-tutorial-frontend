@@ -7,6 +7,7 @@ const TodoList = ({ todos, shortHeight }) => {
     <section id={classes["todo-list"]} className={shortHeight && `${classes['todo-list--short-height']}`}>
       {todos.map((todo) => (
         <Todo
+          id={todo.id}
           key={todo.id}
           title={todo.title}
           dateCreated={todo.date_created}

@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const HomePage = () => {
   const navigate = useNavigate()
   const [todos, setTodos] = useState([])
+  const [refresh, setRefresh] = useState(null)
 
   const fetchTodos = async () => {
     const response = await fetch('http://localhost:8000/api/todo-list', {
@@ -24,13 +25,13 @@ const HomePage = () => {
     if (!localStorage.getItem('token')) navigate('/login')
 
     fetchTodos()
-  }, [])
+  }, [refresh])
 
   return (
     <>
     <Navbar />
     <section id={classes['home-page']}>
-      <TodoForm />
+      <TodoForm setRefresh={setRefresh} />
       {todos && <TodoList todos={todos} shortHeight />}
     </section>
     </>

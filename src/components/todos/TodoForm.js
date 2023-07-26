@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import classes from "./Todos.module.css";
 
-const TodoForm = () => {
+const TodoForm = ({ setRefresh }) => {
   const todoInputRef = useRef();
 
   const sendData = async (title) => {
@@ -19,6 +19,8 @@ const TodoForm = () => {
     if (response.status !== 201) {
       console.log("An error occured while making a new todo"); // We are going to show an error later
     }
+
+    if (response.status === 201) setRefresh(Date.now())
   };
 
   const formSubmitHandler = (e) => {
