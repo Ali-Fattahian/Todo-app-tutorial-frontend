@@ -65,7 +65,7 @@ const TodosPage = () => {
   return (
     <>
       <Navbar />
-      <div style={{ marginTop: "5rem" }}>
+      <div id={classes['todos-list__container']}>
         <div className={classes["todo-list-btns"]}>
           <button
             className={`${

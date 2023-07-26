@@ -1,3 +1,11 @@
+#todos-list__container {
+  margin-top: 5rem;
+}
+
+#todos-list__container > section {
+  max-height: 400px;
+}
+
 .todo-list-btns {
   display: flex;
   justify-content: center;
@@ -24,4 +32,20 @@
 .todo-list-btns button:active {
   background-color: #1985a1;
   border-color: transparent;
+}
+
+
+@media screen and (max-width: 300px) {
+  #todos-list__container > section {
+    max-height: 290px;
+  }
+
+  .todo-list-btns {
+    flex-direction: column;
+    margin: 0 2rem;
+  }
+
+  .todo-list-btns button {
+    width: 100%;
+  }
 }
