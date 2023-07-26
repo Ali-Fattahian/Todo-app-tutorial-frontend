@@ -1,0 +1,24 @@
+.message {
+  box-shadow: 10px 9px 11px 4px rgba(0, 0, 0, 0.1);
+  color: #e6aa68;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  margin: auto;
+  backdrop-filter: blur(5px);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: .5rem;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    background: transparent;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+}

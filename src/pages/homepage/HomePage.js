@@ -4,6 +4,7 @@ import classes from './HomePage.module.css';
 import TodoForm from '../../components/todos/TodoForm';
 import Navbar from '../../components/navbar/Navbar';
 import { useNavigate } from 'react-router-dom';
+import Message from '../../components/message/Message';
 
 const HomePage = () => {
   const navigate = useNavigate()
@@ -11,7 +12,8 @@ const HomePage = () => {
   const [refresh, setRefresh] = useState(null)
 
   const fetchTodos = async () => {
-    const response = await fetch('http://localhost:8000/api/todo-list', {
+    try {
+      const response = await fetch('http://localhost:8000/api/todo-list', {
       headers: {
         'Authorization': `Token ${localStorage.getItem('token')}` 
       }
@@ -19,6 +21,10 @@ const HomePage = () => {
 
     const data = await response.json()
     setTodos(data)
+    } catch (err) {
+      console.log(err)
+    }
+    
   }
 
   useEffect(() => {
@@ -32,6 +38,7 @@ const HomePage = () => {
     <Navbar />
     <section id={classes['home-page']}>
       <TodoForm setRefresh={setRefresh} />
+      <Message message={'An error has occured'} />
       {todos && <TodoList todos={todos} shortHeight />}
     </section>
     </>
