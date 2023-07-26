@@ -1,21 +1,28 @@
 import { useState } from "react";
 import classes from "./Todos.module.css";
+import Message from "../message/Message";
 
 const Todo = ({ id, title, dateCreated, isRead, setRefresh }) => {
   const [todoIsRead, setTodoIsRead] = useState(isRead);
+  const [message, setMessage] = useState(null);
 
   const deleteTodo = async () => {
-    try {
-      const response = await fetch(`http://localhost:8000/api/delete-todo/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Token ${localStorage.getItem("token")}`,
-        },
+    await fetch(`http://localhost:8000/api/delete-todo/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 204) setRefresh(Date.now());
+      })
+      .catch(() => {
+        setMessage("Make sure you are logged in and try again!");
       });
-      if (response.status === 204) setRefresh(Date.now())
-    } catch (err) {
-      console.log(err);
-    }
+  };
+
+  const closeMessage = () => {
+    setMessage(null);
   };
 
   const changeTodoIsRead = async () => {
@@ -28,8 +35,8 @@ const Todo = ({ id, title, dateCreated, isRead, setRefresh }) => {
             Authorization: `Token ${localStorage.getItem("token")}`,
           },
         });
-      } catch (err) {
-        console.log(err);
+      } catch {
+        setMessage("Make sure you are logged in and try again!");
       }
     } else {
       try {
@@ -39,8 +46,8 @@ const Todo = ({ id, title, dateCreated, isRead, setRefresh }) => {
             Authorization: `Token ${localStorage.getItem("token")}`,
           },
         });
-      } catch (err) {
-        console.log(err);
+      } catch {
+        setMessage("Make sure you are logged in and try again!");
       }
     }
   };
@@ -48,6 +55,7 @@ const Todo = ({ id, title, dateCreated, isRead, setRefresh }) => {
   return (
     <div className={classes.todo}>
       <div className={classes["todo-title"]}>{title}</div>
+      {message && <Message message={message} closeMessage={closeMessage} />}
       <div className={classes["todo-lower"]}>
         <small>{dateCreated.slice(0, 10)}</small>
         <label htmlFor={`isRead-${id}`} className={classes["isRead"]}>
@@ -65,8 +73,8 @@ const Todo = ({ id, title, dateCreated, isRead, setRefresh }) => {
         </label>
       </div>
       <button type="submit" onClick={() => deleteTodo()}>
-          Delete
-        </button>
+        Delete
+      </button>
     </div>
   );
 };

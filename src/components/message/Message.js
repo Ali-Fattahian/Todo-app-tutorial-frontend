@@ -4,7 +4,7 @@ const Message = ({ message, closeMessage }) => {
   return (
     <div className={classes.message}>
       <p>{message}</p>
-      <button onClick={() => closeMessage()}>X</button>
+      <p className={classes['close-btn']} onClick={() => closeMessage()}>X</p>
     </div>
   );
 };

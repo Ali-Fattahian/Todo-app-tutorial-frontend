@@ -3,49 +3,67 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import TodoList from "../../components/todos/TodoList";
 import classes from "./Todos.module.css";
+import Message from "../../components/message/Message";
 
 const TodosPage = () => {
   const navigate = useNavigate();
   const [todos, setTodos] = useState([]);
-  const [refresh, setRefresh] = useState(null)
+  const [refresh, setRefresh] = useState(null);
+  const [message, setMessage] = useState(null);
 
   const fetchAllTodos = async () => {
-    const response = await fetch("http://localhost:8000/api/todo-list", {
-      headers: {
-        Authorization: `Token ${localStorage.getItem("token")}`,
-      },
-    });
+    try {
+      const response = await fetch("http://localhost:8000/api/todo-list", {
+        headers: {
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+      });
 
-    const data = await response.json();
-    setTodos(data);
+      const data = await response.json();
+      setTodos(data);
+    } catch {
+      setMessage("There was a problem fetching your todos, Please try again!");
+    }
   };
 
   const fetchFinishedTodos = async () => {
-    const response = await fetch(
-      "http://localhost:8000/api/todo-list-finished",
-      {
-        headers: {
-          Authorization: `Token ${localStorage.getItem("token")}`,
-        },
-      }
-    );
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/todo-list-finished",
+        {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
-    const data = await response.json();
-    setTodos(data);
+      const data = await response.json();
+      setTodos(data);
+    } catch {
+      setMessage("There was a problem fetching your todos, Please try again!");
+    }
   };
 
   const fetchUnfinishedTodos = async () => {
-    const response = await fetch(
-      "http://localhost:8000/api/todo-list-unfinished",
-      {
-        headers: {
-          Authorization: `Token ${localStorage.getItem("token")}`,
-        },
-      }
-    );
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/todo-list-unfinished",
+        {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
-    const data = await response.json();
-    setTodos(data);
+      const data = await response.json();
+      setTodos(data);
+    } catch {
+      setMessage("There was a problem fetching your todos, Please try again!");
+    }
+  };
+
+  const closeMessage = () => {
+    setMessage(null);
   };
 
   useEffect(() => {
@@ -66,12 +84,13 @@ const TodosPage = () => {
   return (
     <>
       <Navbar />
-      <div id={classes['todos-list__container']}>
+      <div id={classes["todos-list__container"]}>
         <div className={classes["todo-list-btns"]}>
           <button
             className={`${
-              localStorage.getItem("todoListChoice") === "finished" ?
-              classes["todo-btn--active"] : ''
+              localStorage.getItem("todoListChoice") === "finished"
+                ? classes["todo-btn--active"]
+                : ""
             }`}
             onClick={() => {
               localStorage.setItem("todoListChoice", "finished");
@@ -82,8 +101,9 @@ const TodosPage = () => {
           </button>
           <button
             className={`${
-              localStorage.getItem("todoListChoice") === "unfinished" ?
-              classes["todo-btn--active"] : ''
+              localStorage.getItem("todoListChoice") === "unfinished"
+                ? classes["todo-btn--active"]
+                : ""
             }`}
             onClick={() => {
               localStorage.setItem("todoListChoice", "unfinished");
@@ -94,8 +114,9 @@ const TodosPage = () => {
           </button>
           <button
             className={`${
-              localStorage.getItem("todoListChoice") === "all" ?
-              classes["todo-btn--active"] : ''
+              localStorage.getItem("todoListChoice") === "all"
+                ? classes["todo-btn--active"]
+                : ""
             }`}
             onClick={() => {
               localStorage.setItem("todoListChoice", "all");
@@ -105,6 +126,7 @@ const TodosPage = () => {
             All
           </button>
         </div>
+        {message && <Message message={message} closeMessage={closeMessage} />}
         {todos && <TodoList todos={todos} setRefresh={setRefresh} />}
       </div>
     </>

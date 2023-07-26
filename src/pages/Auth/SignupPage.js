@@ -1,31 +1,38 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
-import classes from './Auth.module.css'
+import classes from "./Auth.module.css";
 import { useNavigate } from "react-router-dom";
+import Message from "../../components/message/Message";
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const [message, setMessage] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem('token')) { // Already logged in
-      navigate('/')
+    if (localStorage.getItem("token")) {
+      // Already logged in
+      navigate("/");
     }
-  },[])
+  }, []);
 
   const sendAuthData = async (username, password) => {
-    const response = await fetch("http://localhost:8000/api/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    });
-    if (response.status === 200) {
-      const token = await response.json()
-      localStorage.setItem('token', token)
-      navigate('/')
+    try {
+      const response = await fetch("http://localhost:8000/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+      if (response.status === 200) {
+        const token = await response.json();
+        localStorage.setItem("token", token);
+        navigate("/");
+      }
+    } catch {
+      setMessage("Sign up failed, Please try again!");
     }
   };
 
@@ -34,13 +41,17 @@ const SignupPage = () => {
 
     if (username && password) {
       if (password.trim().length < 5) {
-        console.log("Password is at least 5 characters long!");
+        setMessage("Password should be at least 5 characters long!");
       } else {
         sendAuthData(username, password);
       }
     } else {
-      console.log("Please provide username and password");
+      setMessage("Please provide username and password");
     }
+  };
+
+  const closeMessage = () => {
+    setMessage(null);
   };
 
   return (
@@ -67,6 +78,7 @@ const SignupPage = () => {
             id="login-password"
           />
         </div>
+        {message && <Message message={message} closeMessage={closeMessage} />}
         <button type="submit">Sign up</button>
         <a href="/login">I have an account</a>
       </form>

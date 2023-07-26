@@ -1,8 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import classes from "./Todos.module.css";
+import Message from "../message/Message";
 
 const TodoForm = ({ setRefresh }) => {
   const todoInputRef = useRef();
+  const [message, setMessage] = useState(null)
 
   const sendData = async (title) => {
     const response = await fetch("http://localhost:8000/api/todo-list", {
@@ -17,7 +19,7 @@ const TodoForm = ({ setRefresh }) => {
     });
 
     if (response.status !== 201) {
-      console.log("An error occured while making a new todo"); // We are going to show an error later
+      setMessage("An error occured while making a new todo"); // We are going to show an error later
     }
 
     if (response.status === 201) setRefresh(Date.now())
@@ -29,9 +31,13 @@ const TodoForm = ({ setRefresh }) => {
     if (input.length !== 0) {
       sendData(input);
     } else {
-      console.log("Input must not be empty!");
+      setMessage("Input must not be empty!");
     }
   };
+
+  const closeMessage = () => {
+    setMessage(null)
+  }
 
   return (
     <form
@@ -41,6 +47,7 @@ const TodoForm = ({ setRefresh }) => {
     >
       <input type="text" ref={todoInputRef} />
       <button type="submit">Create</button>
+      {message && <Message closeMessage={closeMessage} message={message} />}
     </form>
   );
 };
