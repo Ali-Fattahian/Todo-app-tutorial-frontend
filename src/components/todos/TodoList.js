@@ -11,7 +11,7 @@ const TodoList = ({ todos, shortHeight }) => {
           key={todo.id}
           title={todo.title}
           dateCreated={todo.date_created}
-          isRead={todo.isRead}
+          isRead={todo.is_read}
         />
       ))}
     </section>
