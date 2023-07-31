@@ -63,19 +63,19 @@ const SignupPage = () => {
         className={classes["auth-form"]}
       >
         <div className={classes["form-control"]}>
-          <label htmlFor="login-username">USERNAME</label>
+          <label htmlFor="signup-username">USERNAME</label>
           <input
             type="text"
             onChange={(e) => setUsername(e.target.value)}
-            id="login-username"
+            id="signup-username"
           />
         </div>
         <div className={classes["form-control"]}>
-          <label htmlFor="login-password">PASSWORD</label>
+          <label htmlFor="signup-password">PASSWORD</label>
           <input
             type="password"
             onChange={(e) => setPassword(e.target.value)}
-            id="login-password"
+            id="signup-password"
           />
         </div>
         {message && <Message message={message} closeMessage={closeMessage} />}
